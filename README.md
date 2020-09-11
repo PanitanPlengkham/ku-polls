@@ -8,3 +8,6 @@ is an application for conducting online polls and surways.
 [Requirements](https://github.com/PanitanPlengkham/ku-polls/wiki/Requirements)
 
 [Vision Statement](https://github.com/PanitanPlengkham/ku-polls/wiki/Vision-Statement)
+
+[Iteration 1 Plan](https://github.com/PanitanPlengkham/ku-polls/wiki/Iteration-1-plan)
+
