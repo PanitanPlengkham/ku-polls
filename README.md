@@ -11,3 +11,7 @@ is an application for conducting online polls and surways.
 
 [Iteration 1 Plan](https://github.com/PanitanPlengkham/ku-polls/wiki/Iteration-1-plan)
 
+[Iteration 2 Plan](https://github.com/PanitanPlengkham/ku-polls/wiki/Iteration-2-plan)
+
+
+

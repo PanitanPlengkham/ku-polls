@@ -64,3 +64,6 @@ def vote(request, question_id):
         selected_choice.votes += 1
         selected_choice.save()
     return HttpResponseRedirect(reverse('polls:results', args=(question.id,)))
+
+#<input type="button" value="Go back!" onclick="history.back()">
+#<a href="{% url 'polls:index' %}">Go Back</a>
