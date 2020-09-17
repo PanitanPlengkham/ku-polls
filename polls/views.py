@@ -4,6 +4,8 @@ from django.shortcuts import render, get_object_or_404
 from django.urls import reverse
 from django.views import generic
 from django.utils import timezone
+from django.contrib import messages
+
 
 
 class IndexView(generic.ListView):
@@ -61,9 +63,12 @@ def vote(request, question_id):
             'error_message': "You didn't select a choice.",
         })
     else:
-        selected_choice.votes += 1
-        selected_choice.save()
-    return HttpResponseRedirect(reverse('polls:results', args=(question.id,)))
+        messages.success(request,"Your vote is succesfull.")
+        if not (question.can_vote()):
+            messages.warning(request,"This polls are not allowed.")
+            return HttpResponseRedirect(reverse("polls:index"))
+        else:
+            selected_choice.votes += 1
+            selected_choice.save()
+            return HttpResponseRedirect(reverse('polls:results', args=(question.id,)))
 
-#<input type="button" value="Go back!" onclick="history.back()">
-#<a href="{% url 'polls:index' %}">Go Back</a>
