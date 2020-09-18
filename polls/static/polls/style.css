@@ -1,9 +1,10 @@
-li a {
+li a{
     color: yellow;
 }
 
 body {
     background: white url("images/background.gif") no-repeat;
+    color: white;
 }
 
 
