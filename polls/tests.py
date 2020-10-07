@@ -19,6 +19,9 @@ def create_question(question_text, days):
 
 
 class QuestionIndexViewTests(TestCase):
+    """
+
+    """
     def test_no_questions(self):
         """
         If no questions exist, an appropriate message is displayed.
