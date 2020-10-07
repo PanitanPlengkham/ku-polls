@@ -18,7 +18,7 @@ env.read_env(DEBUG=(bool, False))
 
 environ.Env.read_env()
 
-DEBUG = env('DEBUG')
+DEBUG = env('DEBUG',Default=False)
 
 SECRET_KEY = env('SECRET_KEY')
 
