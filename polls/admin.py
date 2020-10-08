@@ -1,23 +1,21 @@
+"""Model for Kul-polls."""
 from django.contrib import admin
-
 from .models import Choice, Question
 
 
 class ChoiceInline(admin.TabularInline):
-    """
+    """Class for Inline choice."""
 
-    """
     model = Choice
     extra = 3
 
 
 class QuestionAdmin(admin.ModelAdmin):
-    """
+    """Class that contain admin function."""
 
-    """
     fieldsets = [
         (None, {'fields': ['question_text']}),
-        ('Date information', {'fields': ['pub_date','end_date'], 'classes': ['collapse']}),
+        ('Date information', {'fields': ['pub_date', 'end_date'], 'classes': ['collapse']}),
     ]
     inlines = [ChoiceInline]
     list_display = ('question_text', 'pub_date', 'was_published_recently')
