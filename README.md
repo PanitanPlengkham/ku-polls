@@ -1,4 +1,6 @@
 # ku-polls
+[![Build Status](https://travis-ci.com/PanitanPlengkham/ku-polls.svg?branch=master)](https://travis-ci.com/PanitanPlengkham/ku-polls) [![codecov](https://codecov.io/gh/PanitanPlengkham/ku-polls/branch/master/graph/badge.svg)](https://codecov.io/gh/PanitanPlengkham/ku-polls)
+
 is an application for conducting online polls and surways.
 
 ## Project Documents
