@@ -1,3 +1,4 @@
+environ
 # No requirements beyond what's in standard Python distribution.
 coverage
 django

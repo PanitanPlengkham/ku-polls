@@ -6,8 +6,50 @@ from django.urls import reverse
 from django.utils import timezone
 from django.views import generic
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.signals import user_logged_in, user_logged_out, user_login_failed
+from django.dispatch import receiver
+from .settings import LOGGING
+import logging
 
 from .models import Question, Choice, Vote
+logging.config.dictConfig(LOGGING)
+logger = logging.getLogger('polls')
+
+
+def get_client_ip(request):
+    x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
+    if x_forwarded_for:
+        ip = x_forwarded_for.split(',')[-1].strip()
+    else:
+        ip = request.META.get('REMOTE_ADDR')
+    return ip
+
+
+@receiver(user_logged_in)
+def user_logged_in_callback(sender, request, user, **kwargs):
+    ip = get_client_ip(request)
+
+    logger.info('login user: {user} via ip: {ip}'.format(
+        user=user,
+        ip=ip
+    ))
+
+
+@receiver(user_logged_out)
+def user_logged_out_callback(sender, request, user, **kwargs):
+    ip = get_client_ip(request)
+
+    logger.info('logout user: {user} via ip: {ip}'.format(
+        user=user,
+        ip=ip
+    ))
+
+
+@receiver(user_login_failed)
+def user_login_failed_callback(sender, credentials, **kwargs):
+    logger.warning('login failed for: {credentials}'.format(
+        credentials=credentials,
+    ))
 
 
 class IndexView(generic.ListView):
@@ -81,4 +123,9 @@ def vote(request, question_id):
         else:
             question.vote_set.create(choice=selected_choice, user=request.user)
             messages.success(request,"Vote sucessful,thank you for voting. ")
-        return HttpResponseRedirect(reverse('polls:results',args=(question.id,)))
+            logger.info('user {user} voted on polls id: {id}'.format(
+                user=request.user,
+                id=question_id
+            ))
+        request.session['choice'] = selected_choice.id
+        return HttpResponseRedirect(reverse('polls:results', args=(question.id,)))
