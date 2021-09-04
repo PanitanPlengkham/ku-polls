@@ -1,6 +1,6 @@
 # ku-polls
 
-is an application for conducting online polls and surways.
+Ku polls is an application for conducting online polls and survey.
 
 ## Project Documents
 
@@ -10,3 +10,4 @@ is an application for conducting online polls and surways.
 
 [Vision Statement](https://github.com/PanitanPlengkham/ku-polls/wiki/Vision-Statement)
 
+[Iteration 1 plan](https://github.com/PanitanPlengkham/ku-polls/wiki/Iteration-1-plan)

@@ -109,7 +109,7 @@ class QuestionDetailViewTests(TestCase):
 
     def test_future_question(self):
         """
-        The detail view of a question with a pub_date in the future
+        The detail view of a question with a  pub_date in the future
         returns a 404 not found.
         """
         future_question = create_question(question_text='Future question.', days=5)
