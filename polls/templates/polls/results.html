@@ -7,11 +7,16 @@
      </ul>
      {% endif %}
 <ul>
+    <table width="30%">
 {% for choice in question.choice_set.all %}
-    <li>{{ choice.choice_text }} -- {{ choice.votes }} vote{{ choice.votes|pluralize }}</li>
+         <tr>
+             <td>{{ choice.choice_text }}</td>
+             <td>{{ choice.votes }}</td>
+           </tr>
 {% endfor %}
+        </table>
 </ul>
 
 <form action="{% url 'polls:index'  %}">
-     <input type="submit" value="Go Back" />
+     <input type="submit" value="Go to home page" />
  </form>

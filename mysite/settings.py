@@ -11,7 +11,24 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
 from pathlib import Path
+import environ
 
+env = environ.Env()
+env.read_env(DEBUG=(bool, False))
+environ.Env.read_env()
+DEBUG = env('DEBUG')
+
+SECRET_KEY = env('SECRET_KEY')
+
+DATABASES = {
+     'default': env.db(),
+     'extra': env.db('SQLITE_URL', default='sqlite:////tmp/my-tmp-sqlite.db')
+}
+
+CACHES = {
+    'default': env.cache(),
+    'redis': env.cache('REDIS_URL')
+}
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
