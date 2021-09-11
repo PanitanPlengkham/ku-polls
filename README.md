@@ -11,3 +11,5 @@ Ku polls is an application for conducting online polls and survey.
 [Vision Statement](https://github.com/PanitanPlengkham/ku-polls/wiki/Vision-Statement)
 
 [Iteration 1 plan](https://github.com/PanitanPlengkham/ku-polls/wiki/Iteration-1-plan)
+
+[Iteration 2 plan](https://github.com/PanitanPlengkham/ku-polls/wiki/Iteration-2-plan)
