@@ -1,3 +1,8 @@
+li a{
+    color: yellow;
+}
+
 body {
     background: white url("images/background_poll.gif") no-repeat;
+    color: white;
 }

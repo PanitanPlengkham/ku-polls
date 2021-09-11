@@ -8,9 +8,16 @@ class Question(models.Model):
     pub_date = models.DateTimeField('date published')
     end_date = models.DateTimeField('end date')
 
+    def is_published(self):
+        return timezone.now() >= self.pub_date
+
+    def can_vote(self):
+        return self.pub_date <= timezone.now() <= self.end_date
+
     def was_published_recently(self):
         now = timezone.now()
         return now - datetime.timedelta(days=1) <= self.pub_date <= now
+
 
 
 class Choice(models.Model):
