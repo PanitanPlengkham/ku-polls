@@ -119,5 +119,5 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-LOGIN_REDIRECT_URL = '/polls/'
-LOGOUT_REDIRECT_URL = '/polls'
+LOGIN_REDIRECT_URL = 'polls:index'
+LOGOUT_REDIRECT_URL = 'polls:index'
