@@ -1,5 +1,5 @@
+"""Model for Ku-polls."""
 from django.urls import path
-
 from . import views
 
 app_name = 'polls'

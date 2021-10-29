@@ -5,8 +5,9 @@ from django.urls import reverse
 from django.views import generic
 from django.utils import timezone
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 
-from .models import Choice, Question
+from .models import Choice, Question, Vote
 
 
 class IndexView(generic.ListView):
@@ -39,7 +40,7 @@ class ResultsView(generic.DetailView):
     model = Question
     template_name = 'polls/results.html'
 
-
+@login_required
 def vote(request, question_id):
     """To return vote function."""
     question = get_object_or_404(Question,
@@ -56,9 +57,11 @@ def vote(request, question_id):
         messages.success(request, "Your vote is succesfull.")
         if not (question.can_vote()):
             messages.warning(request, "This polls are not allowed.")
-            return HttpResponseRedirect(reverse("polls:index"))
+        elif Vote.objects.filter(user=request.user, question=question).exists():
+            this_votes = Vote.objects.get(user=request.user, question=question)
+            this_votes.choice = selected_choice
+            this_votes.save()
         else:
-            selected_choice.votes += 1
-            selected_choice.save()
-            return HttpResponseRedirect(reverse(
-                'polls:results', args=(question.id,)))
+            question.vote_set.create(choice=selected_choice, user=request.user)
+            messages.success(request,"Vote sucessful,thank you for voting. ")
+        return HttpResponseRedirect(reverse('polls:results',args=(question.id,)))

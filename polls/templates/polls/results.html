@@ -1,22 +1,25 @@
 <h1>{{ question.question_text }}</h1>
-    {% if messages %}
-     <ul class="messages">
-     {% for msg in messages %}
-         <b class="{{msg.tags}}" >{{ msg }}</b>
-     {% endfor %}
-     </ul>
-     {% endif %}
+ {% if messages %}
+    <ul class="messages">
+    {% for msg in messages %}
+        <strong class="{{msg.tags}}" >{{ msg }}</strong>
+    {% endfor %}
+    </ul>
+    {% endif %}
+
 <ul>
     <table width="30%">
 {% for choice in question.choice_set.all %}
-         <tr>
-             <td>{{ choice.choice_text }}</td>
-             <td>{{ choice.votes }}</td>
-           </tr>
+        <tr>
+            <td>{{ choice.choice_text }}</td>
+            <td>{{ choice.votes }}</td>
+          </tr>
 {% endfor %}
-        </table>
+    </table>
 </ul>
 
+
+
 <form action="{% url 'polls:index'  %}">
-     <input type="submit" value="Go to home page" />
- </form>
+    <input type="submit" value="Go to home page" />
+</form>

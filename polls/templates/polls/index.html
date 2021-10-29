@@ -1,33 +1,43 @@
 {% load static %}
-
-<link rel="stylesheet" type="text/css" href="{% static 'polls/style.css' %}">
-
-
+<link href="{% static 'polls/style.css' %}" rel="stylesheet" type="text/css">
+{% if user.is_authenticated %}
+   Welcome back, {{ user.username }}
+    <a href="{% url 'logout' %}">Logout</a>
+{% else %}
+   Please <a href="{% url 'login' %}">Login</a>
+{% endif %}
 {% if latest_question_list %}
-    <ul>
+<ul>
     {% for question in latest_question_list %}
-        <br>
-         <br>
-         <body style="color:yellow;">  {{ question.question_text }}
-         {% if question.can_vote %}
-             <a href="{% url 'polls:results' question.id %}"><button type="button">{{"results"}}</button> <a/>
-             <a href="{% url 'polls:detail' question.id %}"><button type="button">{{"vote"}}</button></a>
-         {% else %}
-                 <a href="{% url 'polls:results' question.id %}"><button type="button">{{"results"}}</button></a></a>
-
-         {% endif %}
-     {% endfor %}
+    <br>
+    <br>
+    <body style="color:yellow;"> {{ question.question_text }}
+    {% if question.can_vote %}
+    <a href="{% url 'polls:results' question.id %}">
+        <button type="button">{{"results"}}</button>
+    </a>
+    <a href="{% url 'polls:detail' question.id %}">
+        <button type="button">{{"vote"}}</button>
+    </a>
+    {% else %}
+    <a href="{% url 'polls:results' question.id %}">
+        <button type="button">{{"results"}}</button>
+    </a>
+    {% endif %}
+    {% endfor %}
     </body>
 
-     {% if messages %}
-     <ul class="messages">
-     {% for msg in messages %}
-         <li class="{{msg.tags}}" >{{ msg }}</li>
-    {% endfor %}
-     </ul>
-     </ul>
+    {% if messages %}
+    <ul class="messages">
+        {% for msg in messages %}
+        <li class="{{msg.tags}}">{{ msg }}</li>
+        {% endfor %}
+    </ul>
     {% endif %}
-{% else %}
+    {% else %}
     <p>No polls are available.</p>
 
-{% endif %}
+
+    {% endif %}
+
+</ul>
