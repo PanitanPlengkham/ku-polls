@@ -48,9 +48,9 @@ class Choice(models.Model):
 
     @property
     def votes(self):
-        return  self.question.vote_set.filter(choice=self).count
+        return self.question.vote_set.filter(choice=self).count
 
 class Vote(models.Model):
     question = models.ForeignKey(Question, on_delete=models.CASCADE)
     choice = models.ForeignKey(Choice, on_delete=models.CASCADE)
-    user = models.ForeignKey(User,on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
